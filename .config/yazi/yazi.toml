@@ -1,6 +1,10 @@
 [opener]
-edit = { run = 'nvim "$@"', block = true, desc = "Edit with nvim" }
-finder = { run = 'open -R "$@"', desc = "Reveal in Finder" }
+edit = [
+	{ run = 'nvim "$@"', block = true, desc = "Edit with nvim", for = "unix" },
+]
+finder = [
+	{ run = 'open -R "$@"', desc = "Reveal in Finder" },
+]
 
 [open]
 # Text files
