@@ -22,3 +22,6 @@ end
 # Logseq shortcuts
 alias dlogseq='cd ~/AIprojs/fam_Donavan/logseq'
 alias ylogseq='yazi ~/AIprojs/fam_Donavan/logseq'
+
+# Mail sync and indexing
+alias mail-sync='mbsync -a && notmuch new'
