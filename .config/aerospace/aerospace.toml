@@ -99,10 +99,10 @@ Z = 'Built-in Retina Display'
 [gaps]
     inner.horizontal = 10
     inner.vertical =   10
-    outer.left =       10
-    outer.bottom =     10
-    outer.top =        10
-    outer.right =      10
+    outer.left =       [{ monitor."Sidecar Display" = 0 }, 10]
+    outer.bottom =     [{ monitor."Sidecar Display" = 50 }, 10]
+    outer.top =        [{ monitor."Sidecar Display" = 50 }, 10]
+    outer.right =      [{ monitor."Sidecar Display" = 0 }, 10]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
