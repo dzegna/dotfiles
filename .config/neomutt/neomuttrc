@@ -76,6 +76,25 @@ set reply_to = yes
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 
+# Notmuch Integration
+set nm_default_url = "notmuch:///Users/dz/.mail"
+set nm_query_type = "threads"
+set nm_record_tags = "-inbox,archive,sent"
+set nm_unread_tag = "unread"
+
+# Virtual mailboxes (notmuch queries)
+virtual-mailboxes \
+    "Inbox" "notmuch://?query=tag:inbox" \
+    "Unread" "notmuch://?query=tag:unread" \
+    "Sent" "notmuch://?query=tag:sent" \
+    "All Mail" "notmuch://?query=*"
+
+# Notmuch keybindings
+bind index,pager X change-vfolder
+macro index,pager S "<modify-labels>-inbox -unread +archive<enter>" "Archive message"
+macro index,pager + "<modify-labels>" "Modify labels"
+macro index,pager \\\\ "<vfolder-from-query>" "Search with notmuch"
+
 # Colors (basic scheme)
 color indicator brightwhite blue
 color sidebar_new brightgreen default
