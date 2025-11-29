@@ -46,6 +46,40 @@ on-focus-changed = "move-mouse window-lazy-center"
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
 
+# Workspace to monitor assignment
+# Number workspaces (1-9) on external monitor, Letter workspaces (A-Z) on MacBook
+[workspace-to-monitor-force-assignment]
+1 = '2261W'
+2 = '2261W'
+3 = '2261W'
+4 = '2261W'
+5 = '2261W'
+6 = '2261W'
+7 = '2261W'
+8 = '2261W'
+9 = '2261W'
+A = 'Built-in Retina Display'
+B = 'Built-in Retina Display'
+D = 'Built-in Retina Display'
+E = 'Built-in Retina Display'
+F = 'Built-in Retina Display'
+G = 'Built-in Retina Display'
+I = 'Built-in Retina Display'
+M = 'Built-in Retina Display'
+N = 'Built-in Retina Display'
+O = 'Built-in Retina Display'
+P = 'Built-in Retina Display'
+Q = 'Built-in Retina Display'
+R = 'Built-in Retina Display'
+S = 'Built-in Retina Display'
+T = 'Built-in Retina Display'
+U = 'Built-in Retina Display'
+V = 'Built-in Retina Display'
+W = 'Built-in Retina Display'
+X = 'Built-in Retina Display'
+Y = 'Built-in Retina Display'
+Z = 'Built-in Retina Display'
+
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -194,6 +228,9 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
     alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+    # Focus between monitors
+    alt-c = 'focus-monitor --wrap-around next'
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
 
@@ -219,7 +256,9 @@ automatically-unhide-macos-hidden-apps = false
 
     [[on-window-detected]]
     if.app-id = 'app.zen-browser.zen'
-    run = "move-node-to-workspace 1"
+    run = "move-node-to-workspace Z"
+    # Note: First Zen window goes to Z (MacBook). For additional windows,
+    # manually move to workspace 1 (external) using Alt+Shift+1
     [[on-window-detected]]
     if.app-id = 'com.openai.chat'
     run = "move-node-to-workspace A"
