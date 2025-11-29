@@ -47,7 +47,10 @@ on-focus-changed = "move-mouse window-lazy-center"
 automatically-unhide-macos-hidden-apps = false
 
 # Workspace to monitor assignment
-# Number workspaces (1-9) on external monitor, Letter workspaces (A-Z) on MacBook
+# Number workspaces (1-9) on external monitor (2261W)
+# Letter workspaces (A-Z) on MacBook for all apps
+# NOTE: Sidecar Display not assigned - manually move floating apps there when connected
+# Use Alt+C to cycle focus between monitors, Alt+Shift+Tab to move workspaces
 [workspace-to-monitor-force-assignment]
 1 = '2261W'
 2 = '2261W'
