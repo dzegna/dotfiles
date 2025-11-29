@@ -1,0 +1,85 @@
+# NeoMutt Configuration for Gmail (using mbsync + msmtp)
+# Email: info@nvc.sg
+
+# Account Settings
+set from = "info@nvc.sg"
+set realname = "NVC"
+set use_from = yes
+
+# Local maildir (synced via mbsync)
+set folder = "~/.mail/gmail"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set trash = "+[Gmail]/Bin"
+set record = "+[Gmail]/Sent Mail"
+
+# Use msmtp for sending email
+set sendmail = "/opt/homebrew/bin/msmtp -a gmail"
+set sendmail_wait = 0
+
+# Connection Settings
+set mail_check = 120
+set timeout = 10
+
+# Cache Settings (speeds up performance)
+set header_cache = "~/.config/neomutt/cache/headers"
+set message_cachedir = "~/.config/neomutt/cache/bodies"
+set certificate_file = "~/.config/neomutt/certificates"
+
+# Mailboxes to show in sidebar
+mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Bin =[Gmail]/Spam
+
+# Editor Settings
+set editor = "nvim"
+
+# Sorting & Threading
+set sort = threads
+set sort_aux = reverse-last-date-received
+set strict_threads = yes
+
+# UI Settings
+set date_format = "%Y-%m-%d %H:%M"
+set index_format = "%4C %Z %D %-20.20F %s"
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop = yes
+set menu_scroll = yes
+set tilde = yes
+set markers = no
+
+# Sidebar Settings
+set sidebar_visible = yes
+set sidebar_width = 25
+set sidebar_format = "%B%* %N"
+set sidebar_divider_char = '│'
+
+# Key Bindings
+bind index,pager g noop
+bind index gg first-entry
+bind index G last-entry
+bind pager gg top
+bind pager G bottom
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Co sidebar-open
+bind index,pager B sidebar-toggle-visible
+bind index,pager R group-reply
+
+# Compose View Options
+set envelope_from = yes
+set edit_headers = yes
+set fast_reply = yes
+set include = yes
+set reply_to = yes
+
+# HTML Email Settings
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# Colors (basic scheme)
+color indicator brightwhite blue
+color sidebar_new brightgreen default
+color normal white default
+color error red default
+color status brightwhite black
+color tree cyan default

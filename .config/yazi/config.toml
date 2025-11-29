@@ -1,0 +1,3 @@
+[open]
+finder = { run = 'open -R "$@"', desc = "Reveal in Finder" }
+

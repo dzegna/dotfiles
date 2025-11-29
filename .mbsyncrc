@@ -1,0 +1,22 @@
+IMAPAccount gmail
+Host imap.gmail.com
+User info@nvc.sg
+PassCmd "security find-internet-password -w -a info@nvc.sg -s mbsync-gmail 2>/dev/null"
+TLSType IMAPS
+AuthMechs LOGIN
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/INBOX
+SubFolders Verbatim
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+Patterns *
+Create Both
+Sync All
+Expunge Both
