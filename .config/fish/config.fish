@@ -18,3 +18,7 @@
 function config
     /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $argv
 end
+
+# Logseq shortcuts
+alias dlogseq='cd ~/AIprojs/fam_Donavan/logseq'
+alias ylogseq='yazi ~/AIprojs/fam_Donavan/logseq'
