@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on  = ["o", "f"]   # your chosen key combo
+run = "open finder"
+desc = "Reveal file in Finder"
