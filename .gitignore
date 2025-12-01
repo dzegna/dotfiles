@@ -1,1 +1,44 @@
+# Sensitive files - NEVER commit these
 .config/raycast/config.json
+.ssh/
+.gnupg/
+.password-store/
+.aws/
+*.pem
+*.key
+*.p12
+*token*
+*secret*
+*password*
+
+# Cache and temporary files
+.cache/
+*.cache
+*.tmp
+*.temp
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+.logs/
+
+# Node modules (if any)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS generated files
+.Trash/
+.Spotlight-*/
