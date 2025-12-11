@@ -118,3 +118,5 @@ if ! typeset -f command_not_found_handler >/dev/null; then
 else
     command_not_found_handler() { __ai_agent_dispatch "$@" || return 127; }
 fi
+
+# Test comment for dotfiles sync verification
