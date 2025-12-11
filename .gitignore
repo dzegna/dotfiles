@@ -1,0 +1,59 @@
+# Sensitive files - NEVER commit these
+.config/raycast/config.json
+.ssh/
+.gnupg/
+.password-store/
+.aws/
+*.pem
+*.key
+*.p12
+*token*
+*secret*
+*password*
+
+# Cache and temporary files
+.cache/
+*.cache
+*.tmp
+*.temp
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+.logs/
+
+# Node modules (if any)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Raycast generated extensions
+/.config/raycast/extensions/
+
+# Yazi generated files
+/.config/yazi/keymap.toml-*
+
+# Zed prompts database
+/.config/zed/prompts/
+
+# Git Submodules config (if not intended for dotfiles)
+.gitmodules
+
+# Temporary/Local README
+M4MBP_README.md
+
+# OS generated files
+.Trash/
+.Spotlight-*/
