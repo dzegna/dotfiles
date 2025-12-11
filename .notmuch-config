@@ -1,0 +1,26 @@
+# .notmuch-config - Configuration file for the notmuch mail indexer
+
+[database]
+# Path to your mail root directory
+path=/Users/dz/.mail
+
+[user]
+name=NVC.SG Info Team
+primary_email=info@nvc.sg
+
+[new]
+# Tags to apply to all new messages
+tags=unread;inbox;
+# Should notmuch ignore any files in the mail directory
+ignore=
+
+[search]
+# Exclude tags from search results
+exclude_tags=deleted;spam;
+
+[maildir]
+# Synchronize maildir flags (e.g., unread, flagged) with notmuch tags
+synchronize_flags=true
+
+[crypto]
+gpg_path=gpg
