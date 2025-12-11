@@ -34,19 +34,19 @@ __pycache__/
 *.pyo
 *.pyd
 
-# IDE files
-.vscode/
-.idea/
-*.sublime-*
-
-# Raycast generated extensions
+# Raycast generated/sensitive files
 /.config/raycast/extensions/
 
-# Yazi generated files
+# Yazi generated/temporary files
 /.config/yazi/keymap.toml-*
 
-# Zed prompts database
+# Zed prompts database (contains potentially sensitive data)
 /.config/zed/prompts/
+
+# Application caches and temporary data (but NOT configs)
+/.config/*/cache/
+/.config/*/Cache/
+/.config/*/.cache/
 
 # Git Submodules config (if not intended for dotfiles)
 .gitmodules
