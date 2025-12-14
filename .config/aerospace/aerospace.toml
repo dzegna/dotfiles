@@ -284,6 +284,9 @@ Z = 'Built-in Retina Display'
     if.app-id = 'dev.warp.Warp-Preview'
     run = "move-node-to-workspace V"
     [[on-window-detected]]
+    if.app-id = 'net.kovidgoyal.kitty'
+    run = "move-node-to-workspace V"
+    [[on-window-detected]]
     if.app-id = 'net.whatsapp.WhatsApp'
     run = "move-node-to-workspace W"
     [[on-window-detected]]

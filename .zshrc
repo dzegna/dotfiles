@@ -1,31 +1,138 @@
-# Homebrew initialization (MUST be first)
+# ============================================================================
+# HOMEBREW & PATH (Must be first)
+# ============================================================================
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# User binaries
 export PATH="$HOME/bin:$PATH"
 
-# NVM Configuration
+# ============================================================================
+# NVM CONFIGURATION
+# ============================================================================
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
-# Powerline-go configuration
-function powerline_precmd() {
-    PS1="$(/opt/homebrew/bin/powerline-go -error $? -shell zsh)"
-}
+# ============================================================================
+# ZSH ENHANCEMENTS
+# ============================================================================
+# Enable better tab completion
+autoload -Uz compinit
+compinit
 
-function install_powerline_precmd() {
-    for s in "${precmd_functions[@]}"; do
-        if [ "$s" = "powerline_precmd" ]; then
-            return
-        fi
-    done
-    precmd_functions+=(powerline_precmd)
-}
+# Case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-install_powerline_precmd
-# zoxide initialization
-eval "$(zoxide init zsh)"
+# Better completion menu
+zstyle ':completion:*' menu select
+
+# Completion colors
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# History configuration
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt SHARE_HISTORY
+
+# ============================================================================
+# PROMPT CONFIGURATION
+# ============================================================================
+# Starship prompt (if installed, otherwise fallback to powerline-go)
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+else
+    # Powerline-go fallback
+    function powerline_precmd() {
+        PS1="$(/opt/homebrew/bin/powerline-go -error $? -shell zsh)"
+    }
+
+    function install_powerline_precmd() {
+        for s in "${precmd_functions[@]}"; do
+            if [ "$s" = "powerline_precmd" ]; then
+                return
+            fi
+        done
+        precmd_functions+=(powerline_precmd)
+    }
+
+    install_powerline_precmd
+fi
+
+# ============================================================================
+# TERMINAL TOOL INTEGRATIONS
+# ============================================================================
+
+# Zoxide - smarter cd
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+
+# FZF - fuzzy finder
+if command -v fzf &> /dev/null; then
+    # Setup fzf key bindings and completion
+    source <(fzf --zsh)
+
+    # Use fd instead of find if available
+    if command -v fd &> /dev/null; then
+        export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+        export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+    fi
+
+    # Better FZF options
+    export FZF_DEFAULT_OPTS='
+        --height 40%
+        --layout=reverse
+        --border
+        --inline-info
+        --color=fg:#f8f8f2,bg:#1e1f28,hl:#bd92f8
+        --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd92f8
+        --color=info:#50fa7b,prompt:#ff78c5,pointer:#ff78c5
+        --color=marker:#50fa7b,spinner:#ff78c5,header:#6272a4'
+fi
+
+# Zsh autosuggestions
+if [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+fi
+
+# Zsh syntax highlighting (must be last)
+if [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# ============================================================================
+# MODERN CLI TOOL ALIASES
+# ============================================================================
+
+# eza - better ls (if installed)
+if command -v eza &> /dev/null; then
+    alias ls='eza --icons --group-directories-first'
+    alias la='eza --icons --group-directories-first -a'
+    alias ll='eza --icons --group-directories-first -l'
+    alias lla='eza --icons --group-directories-first -la'
+    alias lt='eza --icons --group-directories-first --tree'
+    alias tree='eza --icons --tree'
+fi
+
+# bat - better cat (if installed)
+if command -v bat &> /dev/null; then
+    alias cat='bat --paging=never'
+    alias less='bat'
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
+# Use ripgrep for grep if available
+if command -v rg &> /dev/null; then
+    alias grep='rg'
+fi
+
+# Use fd for find if available
+if command -v fd &> /dev/null; then
+    alias find='fd'
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

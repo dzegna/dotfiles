@@ -3,3 +3,12 @@
 	email = donavan.zegna@gmail.com
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[credential]
+	helper = osxkeychain
