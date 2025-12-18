@@ -39,25 +39,7 @@ setopt SHARE_HISTORY
 # PROMPT CONFIGURATION
 # ============================================================================
 # Starship prompt (if installed, otherwise fallback to powerline-go)
-if command -v starship &> /dev/null; then
-    eval "$(starship init zsh)"
-else
-    # Powerline-go fallback
-    function powerline_precmd() {
-        PS1="$(/opt/homebrew/bin/powerline-go -error $? -shell zsh)"
-    }
-
-    function install_powerline_precmd() {
-        for s in "${precmd_functions[@]}"; do
-            if [ "$s" = "powerline_precmd" ]; then
-                return
-            fi
-        done
-        precmd_functions+=(powerline_precmd)
-    }
-
-    install_powerline_precmd
-fi
+# (Moved to end of file to override Conda)
 
 # ============================================================================
 # TERMINAL TOOL INTEGRATIONS
@@ -224,4 +206,28 @@ if ! typeset -f command_not_found_handler >/dev/null; then
     command_not_found_handler() { __ai_agent_dispatch "$@"; }
 else
     command_not_found_handler() { __ai_agent_dispatch "$@" || return 127; }
+fi
+
+# ============================================================================
+# PROMPT CONFIGURATION (FINAL)
+# ============================================================================
+# Starship prompt (Must be last to override Conda's PS1 changes)
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+else
+    # Powerline-go fallback
+    function powerline_precmd() {
+        PS1="$(/opt/homebrew/bin/powerline-go -error $? -shell zsh)"
+    }
+
+    function install_powerline_precmd() {
+        for s in "${precmd_functions[@]}"; do
+            if [ "$s" = "powerline_precmd" ]; then
+                return
+            fi
+        done
+        precmd_functions+=(powerline_precmd)
+    }
+
+    install_powerline_precmd
 fi
