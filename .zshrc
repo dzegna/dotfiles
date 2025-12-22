@@ -231,3 +231,8 @@ else
 
     install_powerline_precmd
 fi
+
+# ZSH Plugins
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-autopair/autopair.zsh
+
